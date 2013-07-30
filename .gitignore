@@ -1,0 +1,7 @@
+.*.sw*
+/*.iml
+/.idea
+/npm-debug.log
+/node_modules
+/build
+/lib
