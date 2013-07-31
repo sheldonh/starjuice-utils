@@ -1,4 +1,5 @@
 assert = require('assert')
+module.paths.push('lib')
 merge = require('object_merge')
 
 describe "objectMerge", ->

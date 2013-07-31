@@ -7,6 +7,9 @@ module.exports = (grunt) ->
       build:
         src: 'build/'
         force: true
+      lib:
+        src: 'lib/'
+        force: true
 
     copy:
       lib:
@@ -29,20 +32,14 @@ module.exports = (grunt) ->
         dest: 'build/test'
         ext: '.js'
 
-    shell:
-      mocha:
-        command: 'mocha --recursive --reporter tap build/test'
-        options:
-          stdout: true
-          stderr: true
-          failOnError: true
-          execOptions:
-            env:
-              NODE_PATH: 'lib'
+    mochaTest:
+      test:
+        src: 'build/test/**/*-test.js'
+        options: {reporter: 'tap'}
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-copy'
-  grunt.loadNpmTasks 'grunt-shell'
+  grunt.loadNpmTasks 'grunt-mocha-test'
 
-  grunt.registerTask 'default', 'Clean, build & test', ['clean', 'coffee', 'copy', 'shell:mocha']
+  grunt.registerTask 'default', 'Clean, build & test', ['clean', 'coffee', 'copy', 'mochaTest']
